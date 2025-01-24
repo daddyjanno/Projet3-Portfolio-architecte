@@ -1,3 +1,8 @@
+:root {
+    --main-color: #1d6154;
+    --secondary-color: #b1663c;
+    --main-bg-color: #e5e5e5;
+}
 body {
     max-width: 1140px;
     margin: auto;
@@ -19,7 +24,7 @@ h1 {
     font-family: 'Syne';
     font-size: 22px;
     font-weight: 800;
-    color: #b1663c;
+    color: var(--secondary-color);
 }
 
 h1 > span {
@@ -32,7 +37,7 @@ h2 {
     font-family: 'Syne';
     font-weight: 700;
     font-size: 30px;
-    color: #1d6154;
+    color: var(--main-color);
 }
 nav ul {
     display: flex;
@@ -45,5 +50,5 @@ nav li {
 }
 
 li:hover {
-    color: #b1663c;
+    color: var(--secondary-color);
 }
