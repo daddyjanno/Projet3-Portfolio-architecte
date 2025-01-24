@@ -1,5 +1,5 @@
-import { createFigure } from './createFigure.js'
-import { fetchCategories, fetchWorks } from './fetchData.js'
+import { createFigure } from './js/createFigure.js'
+import { fetchCategories, fetchWorks } from './js/fetchData.js'
 
 const BASEURL = 'http://localhost:5678/api/'
 
