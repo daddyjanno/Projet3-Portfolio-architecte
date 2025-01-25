@@ -1,0 +1,12 @@
+.lost-password {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70vh;
+}
