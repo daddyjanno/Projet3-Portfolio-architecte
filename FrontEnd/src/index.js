@@ -1,23 +1,13 @@
-import { createFigure } from './js/createFigure.js'
-import { createFilter } from './js/createFilter.js'
 import { fetchCategories, fetchWorks } from './js/fetchData.js'
+import { displayFilters, manageFiltersClick } from './js/filters.js'
+import { displayWorks } from './js/gallery.js'
 
 const BASEURL = 'http://localhost:5678/api/'
 
-const works = await fetchWorks(BASEURL)
-console.log(works)
-
 const categories = await fetchCategories(BASEURL)
-console.log(categories)
+displayFilters(categories)
 
-const gallery = document.querySelector('.gallery')
-works.forEach((work) => {
-    const figure = createFigure(work)
-    gallery.appendChild(figure)
-})
+const works = await fetchWorks(BASEURL)
+displayWorks(works)
 
-const filters = document.querySelector('.filters')
-categories.forEach((category) => {
-    const filter = createFilter(category)
-    filters.appendChild(filter)
-})
+manageFiltersClick(works)
