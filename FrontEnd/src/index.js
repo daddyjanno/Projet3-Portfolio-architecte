@@ -11,3 +11,8 @@ const works = await fetchWorks(BASEURL)
 displayWorks(works)
 
 manageFiltersClick(works)
+
+const loginBtn = document.getElementById('login')
+loginBtn.addEventListener('click', () => {
+    document.location.href = './src/html/login.html'
+})
