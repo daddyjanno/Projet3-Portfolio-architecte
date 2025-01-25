@@ -14,13 +14,16 @@ export function displayFilters(categories) {
     })
 }
 
-export function defineFilterValue(filter) {
-    let filterValue = ''
-    filterValue = filter
+function defineFilterValue(filters, filterValue) {
+    for (const item of filters) {
+        if (item.classList.contains('active')) {
+            filterValue = item.innerText
+        }
+    }
     return filterValue
 }
 
-export function filterWorks(filterValue, works) {
+function filterWorks(filterValue, works) {
     if (filterValue === 'Tous') {
         return works
     }
@@ -30,23 +33,20 @@ export function filterWorks(filterValue, works) {
     return filteredWorks
 }
 
+function manageActiveClass(filters, filter) {
+    filters.forEach((filter) => filter.classList.remove('active'))
+    filter.classList.add('active')
+}
+
 export function manageFiltersClick(works) {
     const filters = document.querySelectorAll('.filter')
-
     let filterValue = ''
     let filteredWorks
 
-    for (var item of filters) {
-        if (item.classList.contains('active')) {
-            filterValue = item.firstChild.innerText
-        }
-    }
-
     filters.forEach((filter) => {
-        filter.addEventListener('click', (event) => {
-            filters.forEach((filter) => filter.classList.remove('active'))
-            filter.classList.add('active')
-            filterValue = defineFilterValue(event.target.innerText)
+        filter.addEventListener('click', () => {
+            manageActiveClass(filters, filter)
+            filterValue = defineFilterValue(filters, filterValue)
             filteredWorks = filterWorks(filterValue, works)
             clearGallery()
             displayWorks(filteredWorks)
