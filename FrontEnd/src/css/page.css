@@ -58,3 +58,7 @@ nav li {
 li:hover {
     color: var(--secondary-color);
 }
+
+#logo {
+    cursor: pointer;
+}
