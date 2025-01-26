@@ -1,6 +1,6 @@
-import { fetchCategories, fetchWorks } from './js/fetchData.js'
-import { displayFilters, manageFiltersClick } from './js/filters.js'
-import { displayWorks } from './js/gallery.js'
+import { fetchCategories, fetchWorks } from './js/utils/fetchData.js'
+import { displayFilters, manageFiltersClick } from './js/homepage/filters.js'
+import { displayWorks } from './js/homepage/gallery.js'
 
 export const BASEURL = 'http://localhost:5678/api/'
 
