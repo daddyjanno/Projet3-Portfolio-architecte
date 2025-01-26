@@ -10,3 +10,16 @@
     justify-content: center;
     height: 70vh;
 }
+.loginForm-error {
+    padding: 1em;
+    color: red;
+}
+.visible {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.bold {
+    font-weight: 700;
+}
