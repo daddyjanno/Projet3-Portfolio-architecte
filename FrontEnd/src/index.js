@@ -21,6 +21,13 @@ if (document.location.href === 'http://127.0.0.1:5500/FrontEnd/') {
 
 manageFiltersClick(works)
 
-LOGINBTN.addEventListener('click', () => {
-    document.location.href = './src/html/login.html'
-})
+if (LOGINBTN.innerText === 'login') {
+    LOGINBTN.addEventListener('click', () => {
+        document.location.href = './src/html/login.html'
+    })
+} else {
+    LOGINBTN.addEventListener('click', () => {
+        localStorage.clear()
+        LOGINBTN.innerText = 'login'
+    })
+}
