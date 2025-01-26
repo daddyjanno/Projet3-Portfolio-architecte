@@ -5,12 +5,6 @@ export function handleLoginForm() {
     return body
 }
 
-export function validateForm(email, password) {
-    if (!email || !password) {
-        toggleError()
-    }
-}
-
 export function toggleError() {
     const errorMessage = document.querySelector('.loginForm-error')
     errorMessage.classList.toggle('hidden')
