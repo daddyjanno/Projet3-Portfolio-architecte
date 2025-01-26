@@ -7,8 +7,19 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap"
             rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
         />
         <meta name="description" content="" />
         <link rel="icon" href="../../assets/icons/favicon.png" />
@@ -24,22 +35,30 @@
                     <li id="contact">contact</li>
                     <li id="login">login</li>
                     <li>
-                        <img
+                        <i class="fa-brands fa-instagram"></i>
+                        <!-- <img
                             src="../../assets/icons/instagram.png"
                             alt="Instagram"
-                        />
+                        /> -->
                     </li>
                 </ul>
             </nav>
         </header>
         <section id="contact" class="login">
             <h2>Log In</h2>
-            <form action="#" method="post">
+            <form action="#" method="post" class="loginForm">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" />
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" />
-                <input type="submit" value="Envoyer" />
+                <span class="loginForm-error hidden"
+                    >“Erreur dans l’identifiant ou le mot de passe”</span
+                >
+                <input
+                    type="submit"
+                    value="Envoyer"
+                    class="loginForm-submitBtn"
+                />
             </form>
             <div class="lost-password">Mot de passe oublié</div>
         </section>
