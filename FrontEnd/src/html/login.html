@@ -27,47 +27,51 @@
         <script src="../js/login/login.js" type="module" defer></script>
     </head>
     <body>
-        <header>
-            <h1 id="logo">Sophie Bluel <span>Architecte d'intérieur</span></h1>
-            <nav>
-                <ul>
-                    <li id="projects">projets</li>
-                    <li id="contact">contact</li>
-                    <li id="login">login</li>
-                    <li>
-                        <i class="fa-brands fa-instagram"></i>
-                        <!-- <img
-                            src="../../assets/icons/instagram.png"
-                            alt="Instagram"
-                        /> -->
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <section id="contact" class="login">
-            <h2>Log In</h2>
-            <form action="#" method="post" class="loginForm">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" />
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" />
-                <span class="loginForm-error hidden"
-                    >“Erreur dans l’identifiant ou le mot de passe”</span
-                >
-                <input
-                    type="submit"
-                    value="Envoyer"
-                    class="loginForm-submitBtn"
-                />
-            </form>
-            <div class="lost-password">Mot de passe oublié</div>
-        </section>
-        <footer>
-            <nav>
-                <ul>
-                    <li>Mentions Légales</li>
-                </ul>
-            </nav>
-        </footer>
+        <div class="mainContainer">
+            <header>
+                <h1 id="logo">
+                    Sophie Bluel <span>Architecte d'intérieur</span>
+                </h1>
+                <nav>
+                    <ul>
+                        <li id="projects">projets</li>
+                        <li id="contact">contact</li>
+                        <li id="login">login</li>
+                        <li>
+                            <i class="fa-brands fa-instagram"></i>
+                            <!-- <img
+                                src="../../assets/icons/instagram.png"
+                                alt="Instagram"
+                            /> -->
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <section id="contact" class="login">
+                <h2>Log In</h2>
+                <form action="#" method="post" class="loginForm">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" />
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password" />
+                    <span class="loginForm-error hidden"
+                        >“Erreur dans l’identifiant ou le mot de passe”</span
+                    >
+                    <input
+                        type="submit"
+                        value="Envoyer"
+                        class="loginForm-submitBtn"
+                    />
+                </form>
+                <div class="lost-password">Mot de passe oublié</div>
+            </section>
+            <footer>
+                <nav>
+                    <ul>
+                        <li>Mentions Légales</li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
     </body>
 </html>
