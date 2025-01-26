@@ -10,6 +10,9 @@ const categories = await fetchCategories(BASEURL)
 const works = await fetchWorks(BASEURL)
 
 if (document.location.href === 'http://127.0.0.1:5500/FrontEnd/') {
+    if (localStorage.getItem('token')) {
+        LOGINBTN.innerText = 'logout'
+    }
     displayFilters(categories)
     displayWorks(works)
     unbold(LOGINBTN)
