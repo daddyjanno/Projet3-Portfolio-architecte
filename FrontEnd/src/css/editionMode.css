@@ -1,0 +1,14 @@
+.editionMode {
+    height: 3.75em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    background-color: black;
+    color: white;
+    width: 100vw;
+    margin: 0;
+}
+.editionMode > p {
+    cursor: default;
+}
