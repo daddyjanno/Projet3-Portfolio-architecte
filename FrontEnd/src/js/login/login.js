@@ -27,6 +27,7 @@ async function handleSubmit(event) {
     if (response.token) {
         console.log('connected')
         storeToken(response)
+        returnToHomePage()
     }
 }
 
