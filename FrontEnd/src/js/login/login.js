@@ -1,4 +1,4 @@
-import { BASEURL, bold } from '../index.js'
+import { BASEURL, bold } from '../../index.js'
 
 const loginBtn = document.getElementById('login')
 const submitBtn = document.querySelector('.loginForm-submitBtn')
