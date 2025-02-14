@@ -1,4 +1,4 @@
-import { GALLERY } from '../utils/variables.js'
+import { GALLERY, MODALGRID } from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
 
 export function clearGallery() {
@@ -9,5 +9,6 @@ export function displayWorks(works) {
     works.forEach((work) => {
         const figure = createFigure(work)
         GALLERY.appendChild(figure)
+        MODALGRID.appendChild(figure)
     })
 }
