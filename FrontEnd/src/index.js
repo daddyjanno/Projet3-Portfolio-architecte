@@ -1,8 +1,15 @@
+import {
+    EDITIONBTN,
+    LOGINBTN,
+    MODAL,
+    MODALCLOSEBTN,
+    MODALCONTENT,
+} from './js/utils/variables.js'
 import { displayFilters, manageFiltersClick } from './js/homepage/filters.js'
 import { displayWorks } from './js/homepage/gallery.js'
 import { fetchWorks, fetchCategories } from './js/utils/fetchData.js'
 import { toggleEditionMode, unbold } from './js/utils/utils.js'
-import { LOGINBTN } from './js/utils/variables.js'
+import { closeModal, openModal } from './js/homepage/handleModal.js'
 
 export const BASEURL = 'http://localhost:5678/api/'
 
@@ -32,5 +39,8 @@ if (
     unbold(LOGINBTN)
     console.log('index')
 }
+EDITIONBTN.addEventListener('click', () => openModal(MODAL))
+MODALCLOSEBTN.addEventListener('click', () => closeModal(MODAL))
+MODALCONTENT.addEventListener('click', () => closeModal(MODAL))
 
 manageFiltersClick(works)
