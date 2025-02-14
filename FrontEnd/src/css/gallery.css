@@ -2,6 +2,12 @@
     text-align: center;
     margin-bottom: 1em;
 }
+.portfolio-title {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 0.7em;
+}
 .filters {
     display: flex;
     justify-content: center;
