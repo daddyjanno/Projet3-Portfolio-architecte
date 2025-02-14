@@ -9,11 +9,13 @@ export const BASEURL = 'http://localhost:5678/api/'
 const categories = await fetchCategories(BASEURL)
 const works = await fetchWorks(BASEURL)
 
-if (document.location.href === 'http://127.0.0.1:5500/FrontEnd/') {
-    if (localStorage.getItem('token')) {
-        LOGINBTN.innerText = 'logout'
-        toggleEditionMode()
-    }
+if (
+    document.location.href === 'http://127.0.0.1:5500/FrontEnd/' &&
+    localStorage.getItem('token')
+) {
+    LOGINBTN.innerText = 'logout'
+    toggleEditionMode()
+
     LOGINBTN.addEventListener('click', () => {
         if (LOGINBTN.innerText === 'login') {
             document.location.href = './src/html/login.html'
