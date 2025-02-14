@@ -1,4 +1,4 @@
-import { EDITIONMODE } from './variables.js'
+import { EDITIONBTN, EDITIONMODE } from './variables.js'
 
 export function bold(element) {
     element.classList.add('bold')
@@ -13,4 +13,5 @@ export function returnToHomePage() {
 
 export function toggleEditionMode() {
     EDITIONMODE.classList.toggle('hidden')
+    EDITIONBTN.classList.toggle('hidden')
 }
