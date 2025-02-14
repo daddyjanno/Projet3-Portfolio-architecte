@@ -27,7 +27,7 @@
         <script src="./src/index.js" type="module" defer></script>
     </head>
     <body>
-        <div class="editionMode hidden">
+        <div class="editionBanner editionMode hidden">
             <i class="fa-regular fa-pen-to-square"></i>
             <p>Mode édition</p>
         </div>
@@ -75,7 +75,14 @@
                     </article>
                 </section>
                 <section id="portfolio">
-                    <h2>Mes Projets</h2>
+                    <div class="portfolio-title">
+                        <h2>Mes Projets</h2>
+                        <span class="editionBtn hidden">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            <p>modifier</p>
+                        </span>
+                    </div>
+
                     <div class="filters"></div>
                     <div class="gallery"></div>
                 </section>
