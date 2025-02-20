@@ -7,7 +7,7 @@ export function clearGallery() {
 
 export function displayWorks(works, element) {
     works.forEach((work) => {
-        const figure = createFigure(work, element)
+        const figure = createFigure(work, element, true, false)
         element.appendChild(figure)
     })
 }
