@@ -1,6 +1,6 @@
 export const LOGO = document.getElementById('logo')
 export const LOGINBTN = document.getElementById('login')
-export const SUBMITBTN = document.querySelector('.loginForm-submitBtn')
+export const SUBMITBTN = document.getElementById('loginFormSubmit')
 export const GALLERY = document.querySelector('.gallery')
 export const EDITIONMODE = document.querySelector('.editionMode')
 export const EDITIONBTN = document.querySelector('.editionBtn')
