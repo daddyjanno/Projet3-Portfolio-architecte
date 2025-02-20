@@ -4,8 +4,6 @@ import { handleLoginForm, storeToken } from './loginForm.js'
 import { bold, returnToHomePage, unbold } from '../utils/utils.js'
 import { LOGINBTN, LOGO, SUBMITBTN } from '../utils/variables.js'
 
-console.log(window.location.pathname)
-
 if (window.location.pathname === '/FrontEnd/login.html') {
     bold(LOGINBTN)
 }
