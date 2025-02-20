@@ -1,5 +1,5 @@
 import { BASEURL } from '../../index.js'
-import { fetchCredentials } from '../utils/fetchData.js'
+import { fetchCredentials } from '../utils/data.js'
 import { handleLoginForm, storeToken } from './loginForm.js'
 import { bold, returnToHomePage, unbold } from '../utils/utils.js'
 import { LOGINBTN, LOGO, SUBMITBTN } from '../utils/variables.js'
