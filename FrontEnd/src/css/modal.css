@@ -8,35 +8,40 @@
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .modal-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.25em;
+    border-radius: 0.625em;
     position: relative;
-    width: 37%;
-    max-width: 600px;
-    height: auto;
+    width: 50%;
+    background-color: white;
+    min-width: 300px;
+}
+.modal-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .modal-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 26px;
+    font-size: 1.625em;
     font-weight: 400;
     text-align: center;
     color: #000;
-    margin-bottom: 35px;
-    margin-top: 20px;
+    margin-bottom: 2em;
+    margin-top: 1.5em;
 }
-
 .modal-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 1em;
+    right: 1em;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -47,9 +52,9 @@
 .modal .gallery-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    row-gap: 25px;
-    padding-left: 60px;
-    padding-right: 60px;
+    row-gap: 1.2em;
+    padding-left: 3.75em;
+    padding-right: 3.75em;
 }
 
 .gallery-grid figure {
@@ -60,4 +65,9 @@
     width: 90%;
     height: auto;
     object-fit: cover;
+}
+.separator-line {
+    border-top: 1px solid #b3b3b3;
+    width: 80%;
+    margin: 20px auto;
 }
