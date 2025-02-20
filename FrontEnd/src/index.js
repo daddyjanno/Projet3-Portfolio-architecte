@@ -11,36 +11,38 @@ import { fetchWorks, fetchCategories } from './js/utils/fetchData.js'
 import { toggleEditionMode, unbold } from './js/utils/utils.js'
 import { closeModal, openModal } from './js/homepage/handleModal.js'
 
+console.log(window.location.search)
+
 export const BASEURL = 'http://localhost:5678/api/'
 
 const categories = await fetchCategories(BASEURL)
 const works = await fetchWorks(BASEURL)
 
-if (
-    document.location.href === 'http://127.0.0.1:5500/FrontEnd/' &&
-    localStorage.getItem('token')
-) {
-    LOGINBTN.innerText = 'logout'
-    toggleEditionMode()
+const hasToken = localStorage.getItem('token')
+
+if (document.location.href === 'http://127.0.0.1:5500/FrontEnd/') {
+    displayWorks(works)
+    displayFilters(categories)
+    manageFiltersClick(works)
 
     LOGINBTN.addEventListener('click', () => {
         if (LOGINBTN.innerText === 'login') {
-            document.location.href = './src/html/login.html'
+            document.location.href = './login.html'
         }
         if (LOGINBTN.innerText === 'logout') {
             localStorage.clear()
             LOGINBTN.innerText = 'login'
             toggleEditionMode()
+            unbold(LOGINBTN)
         }
     })
 
-    displayFilters(categories)
-    displayWorks(works)
-    unbold(LOGINBTN)
     console.log('index')
 }
-EDITIONBTN.addEventListener('click', () => openModal(MODAL))
-MODALCLOSEBTN.addEventListener('click', () => closeModal(MODAL))
-MODALCONTENT.addEventListener('click', () => closeModal(MODAL))
-
-manageFiltersClick(works)
+if (hasToken) {
+    LOGINBTN.innerText = 'logout'
+    toggleEditionMode()
+    EDITIONBTN.addEventListener('click', () => openModal(MODAL))
+    // MODALCLOSEBTN.addEventListener('click', () => closeModal(MODAL))
+    // MODALCONTENT.addEventListener('click', () => closeModal(MODAL))
+}
