@@ -9,6 +9,5 @@ export function displayWorks(works) {
     works.forEach((work) => {
         const figure = createFigure(work)
         GALLERY.appendChild(figure)
-        MODALGRID.appendChild(figure)
     })
 }
