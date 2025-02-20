@@ -8,7 +8,7 @@ export function unbold(element) {
 }
 
 export function returnToHomePage() {
-    document.location.href = '../../'
+    document.location.href = '../FrontEnd/'
 }
 
 export function toggleEditionMode() {
