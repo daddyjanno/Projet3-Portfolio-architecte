@@ -1,3 +1,4 @@
+import { GALLERY } from '../utils/variables.js'
 import { createFilter } from './createFilter.js'
 import { clearGallery, displayWorks } from './gallery.js'
 
@@ -49,7 +50,7 @@ export function manageFiltersClick(works) {
             filterValue = defineFilterValue(filters, filterValue)
             filteredWorks = filterWorks(filterValue, works)
             clearGallery()
-            displayWorks(filteredWorks)
+            displayWorks(filteredWorks, GALLERY)
         })
     })
 }
