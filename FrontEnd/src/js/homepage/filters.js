@@ -1,17 +1,15 @@
-import { GALLERY } from '../utils/variables.js'
+import { FILTERS, GALLERY } from '../utils/variables.js'
 import { createFilter } from './createFilter.js'
 import { clearGallery, displayWorks } from './gallery.js'
 
 export function displayFilters(categories) {
-    const filtersDiv = document.querySelector('.filters')
-
     const all = createFilter({ name: 'Tous' })
 
     all.classList.add('active')
-    filtersDiv.appendChild(all)
+    FILTERS.appendChild(all)
     categories.forEach((category) => {
         const filter = createFilter(category)
-        filtersDiv.appendChild(filter)
+        FILTERS.appendChild(filter)
     })
 }
 
