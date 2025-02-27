@@ -39,13 +39,14 @@ export function createImg(work, element) {
 }
 
 export function createDeleteBtn(work, element) {
-    console.log(work.id)
-
     const deleteBtn = document.createElement('button')
     deleteBtn.classList.add('delete-btn')
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
-    deleteBtn.addEventListener('click', () => deleteProject(work.id, BASEURL))
     element.appendChild(deleteBtn)
+    deleteBtn.addEventListener('click', (event) => {
+        event.preventDefault()
+        deleteProject(work.id, BASEURL)
+    })
 
     return deleteBtn
 }
