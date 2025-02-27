@@ -1,6 +1,7 @@
 import {
     BASEURL,
     EDITIONBTN,
+    FILTERS,
     GALLERY,
     LOGINBTN,
     MODAL,
@@ -34,8 +35,10 @@ if (window.location.pathname === '/FrontEnd/') {
     LOGINBTN.addEventListener('click', () => {
         if (LOGINBTN.innerText === 'login') {
             document.location.href = './login.html'
+            FILTERS.style.display = 'none'
         }
         if (LOGINBTN.innerText === 'logout') {
+            FILTERS.style.display = 'flex'
             localStorage.clear()
             LOGINBTN.innerText = 'login'
             toggleEditionMode()
@@ -46,6 +49,7 @@ if (window.location.pathname === '/FrontEnd/') {
     console.log('index')
 }
 if (hasToken) {
+    FILTERS.style.display = 'none'
     LOGINBTN.innerText = 'logout'
     toggleEditionMode()
     EDITIONBTN.addEventListener('click', () => {
