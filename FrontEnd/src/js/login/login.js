@@ -1,7 +1,7 @@
 import { fetchCredentials } from '../utils/data.js'
 import { handleLoginForm, storeToken } from './loginForm.js'
 import { bold, returnToHomePage, unbold } from '../utils/utils.js'
-import { BASEURL, LOGINBTN, LOGO, SUBMITBTN } from '../utils/variables.js'
+import { LOGINBTN, LOGO, SUBMITBTN } from '../utils/variables.js'
 
 console.log(window.location.pathname)
 
@@ -19,7 +19,7 @@ LOGO.addEventListener('click', () => {
 async function handleSubmit(event) {
     event.preventDefault()
     const body = handleLoginForm()
-    const response = await fetchCredentials(BASEURL, body)
+    const response = await fetchCredentials(body)
 
     if (response.token) {
         storeToken(response)
