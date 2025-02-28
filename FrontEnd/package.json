@@ -7,5 +7,9 @@
     },
     "author": "",
     "license": "ISC",
-    "description": ""
+    "description": "",
+    "liveServer.settings.ignoreFiles": [
+        "**"
+    ],
+    "files.autoSave": "off"
 }
