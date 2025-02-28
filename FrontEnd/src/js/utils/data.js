@@ -64,10 +64,6 @@ export async function deleteProject(projectId, url) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         debugger
-        // const data = await response.json()
-        // console.log('data', data)
-
-        // return data
     } catch (error) {
         throw error
     }
