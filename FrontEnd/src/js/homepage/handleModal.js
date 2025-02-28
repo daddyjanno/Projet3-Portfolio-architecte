@@ -1,4 +1,11 @@
-import { MODAL, MODALCLOSEBTN, MODALGRID } from '../utils/variables.js'
+import {
+    ADDPHOTOBTN,
+    MODAL,
+    MODALCLOSEBTN,
+    MODALFIRSTVIEW,
+    MODALGRID,
+    MODALSECONDVIEW,
+} from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
 
 export function toggleIsModalOpen(isModalOpen) {
@@ -8,12 +15,12 @@ export function toggleIsModalOpen(isModalOpen) {
 export function openModal(modal) {
     if (modal) {
         modal.style.display = 'flex'
-        // document.querySelector('body').style.overflow = 'hidden'
+        document.querySelector('body').style.overflow = 'hidden'
     }
 }
 export function closeModal(modal) {
     modal.style.display = 'none'
-    // document.querySelector('body').style.overflow = 'visible'
+    document.querySelector('body').style.overflow = 'visible'
 }
 export function handleModal(isModalOpen) {
     MODALCLOSEBTN.addEventListener('click', () => closeModal(MODAL))
@@ -24,6 +31,10 @@ export function handleModal(isModalOpen) {
                 MODAL.style.display = 'none'
             }
         })
+        ADDPHOTOBTN.addEventListener('click', () => {
+            MODALFIRSTVIEW.style.display = 'none'
+            MODALSECONDVIEW.style.display = 'flex'
+        })
     }
 }
 export function displayWorksInModal(works) {
@@ -31,9 +42,4 @@ export function displayWorksInModal(works) {
     works.forEach((work) => {
         createFigure(work, MODALGRID, false, true)
     })
-}
-
-export function handleDelete(button) {
-    console.log(button)
-    button.addEventListener('click', (event) => console.log(event.target))
 }
