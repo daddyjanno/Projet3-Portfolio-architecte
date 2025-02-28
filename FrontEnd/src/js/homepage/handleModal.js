@@ -1,5 +1,6 @@
 import {
     ADDPHOTOBTN,
+    BACKTOMODAL,
     MODAL,
     MODALCLOSEBTN,
     MODALFIRSTVIEW,
@@ -34,6 +35,10 @@ export function handleModal(isModalOpen) {
         ADDPHOTOBTN.addEventListener('click', () => {
             MODALFIRSTVIEW.style.display = 'none'
             MODALSECONDVIEW.style.display = 'flex'
+        })
+        BACKTOMODAL.addEventListener('click', () => {
+            MODALFIRSTVIEW.style.display = 'flex'
+            MODALSECONDVIEW.style.display = 'none'
         })
     }
 }
