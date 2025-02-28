@@ -1,4 +1,4 @@
-import { fetchCategories } from '../utils/data.js'
+import { categories } from '../../index.js'
 import {
     ADDPHOTOBTN,
     BACKTOMODAL,
@@ -14,35 +14,51 @@ export function toggleIsModalOpen(isModalOpen) {
     return !isModalOpen
 }
 
-export function openModal(modal) {
-    if (modal) {
-        modal.style.display = 'flex'
+function openModal() {
+    if (MODAL) {
+        MODAL.style.display = 'flex'
         document.querySelector('body').style.overflow = 'hidden'
     }
 }
-export function closeModal(modal) {
-    modal.style.display = 'none'
-    document.querySelector('body').style.overflow = 'visible'
+function closeModal() {
+    MODALCLOSEBTN.addEventListener('click', () => {
+        MODAL.style.display = 'none'
+        document.querySelector('body').style.overflow = 'visible'
+        MODALFIRSTVIEW.style.display = 'flex'
+        MODALSECONDVIEW.style.display = 'none'
+    })
 }
-export function handleModal(isModalOpen) {
-    MODALCLOSEBTN.addEventListener('click', () => closeModal(MODAL))
 
-    if (isModalOpen) {
-        window.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                MODAL.style.display = 'none'
-            }
-        })
-        ADDPHOTOBTN.addEventListener('click', () => {
-            MODALFIRSTVIEW.style.display = 'none'
-            MODALSECONDVIEW.style.display = 'flex'
-            populateModalCategorySelect()
-        })
-        BACKTOMODAL.addEventListener('click', () => {
+function closeModalOnEsc() {
+    window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            MODAL.style.display = 'none'
             MODALFIRSTVIEW.style.display = 'flex'
             MODALSECONDVIEW.style.display = 'none'
-        })
+        }
+    })
+}
+function displayModalFirstView() {
+    ADDPHOTOBTN.addEventListener('click', () => {
+        MODALFIRSTVIEW.style.display = 'none'
+        MODALSECONDVIEW.style.display = 'flex'
+    })
+}
+function displayModalSecondView() {
+    BACKTOMODAL.addEventListener('click', () => {
+        MODALFIRSTVIEW.style.display = 'flex'
+        MODALSECONDVIEW.style.display = 'none'
+    })
+}
+export function handleModal(isModalOpen) {
+    if (isModalOpen) {
+        closeModal()
+        closeModalOnEsc()
+        populateModalCategorySelect()
+        displayModalFirstView()
+        displayModalSecondView()
     }
+    openModal()
 }
 export function displayWorksInModal(works) {
     MODALGRID.innerHTML = ''
@@ -51,7 +67,7 @@ export function displayWorksInModal(works) {
     })
 }
 
-async function populateModalCategorySelect() {
+function populateModalCategorySelect() {
     const categorySelect = document.getElementById('category-select')
     categorySelect.innerHTML = ''
 
@@ -61,7 +77,6 @@ async function populateModalCategorySelect() {
     defaultOption.selected = true
     categorySelect.appendChild(defaultOption)
 
-    const categories = await fetchCategories()
     categories.forEach((category) => {
         const option = document.createElement('option')
         option.value = category.id
