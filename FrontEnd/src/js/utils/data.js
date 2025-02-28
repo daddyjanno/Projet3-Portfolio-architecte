@@ -48,7 +48,7 @@ export async function fetchCredentials(body) {
 }
 
 export async function deleteProject(projectId) {
-    console.log(url + `works/${projectId}`)
+    console.log(BASEURL + `works/${projectId}`)
 
     try {
         const token = localStorage.getItem('token')
@@ -64,7 +64,6 @@ export async function deleteProject(projectId) {
             // toggleError()
             throw new Error(`HTTP error! status: ${response.status}`)
         }
-        debugger
     } catch (error) {
         throw error
     }
