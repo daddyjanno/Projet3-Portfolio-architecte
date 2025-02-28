@@ -17,8 +17,8 @@ import {
     toggleIsModalOpen,
 } from './js/homepage/handleModal.js'
 
-const categories = await fetchCategories(BASEURL)
-const works = await fetchWorks(BASEURL)
+const categories = await fetchCategories()
+const works = await fetchWorks()
 
 const hasToken = localStorage.getItem('token') ? true : false
 
