@@ -78,20 +78,15 @@
                 <!-- Modal -->
                 <div class="modal" id="project-modal" style="display: none">
                     <div class="modal-content">
-                        <button
-                            class="modal-close"
-                            aria-label="Fermer la modale"
-                        >
+                        <span class="modal-close" aria-label="Fermer la modale">
                             &times;
-                        </button>
+                        </span>
                         <!-- Modal first View -->
                         <div class="modal-view" id="modal-first-view">
                             <h2 class="modal-title">Galerie photo</h2>
                             <div class="gallery-grid"></div>
                             <div class="separator-line"></div>
-                            <button class="add-photo-btn">
-                                Ajouter une photo
-                            </button>
+                            <span class="btn add-photo">Ajouter une photo</span>
                         </div>
                         <!-- Modal second view -->
                         <div
@@ -99,21 +94,21 @@
                             id="modal-second-view"
                             style="display: none"
                         >
-                            <button
+                            <span
                                 id="back-to-main"
                                 class="back-button"
                                 aria-label="Retour"
                             >
                                 <i class="fa-solid fa-arrow-left"></i>
-                            </button>
+                            </span>
                             <h2 class="modal-title">Ajout photo</h2>
                             <!-- Upload zone -->
                             <div class="upload-zone">
                                 <div class="upload-preview">
                                     <i class="fa-regular fa-image"></i>
-                                    <button type="button" class="upload-button">
+                                    <span class="upload-btn">
                                         + Ajouter photo
-                                    </button>
+                                    </span>
                                     <p class="upload-instructions">
                                         jpg, png : 4mo max
                                     </p>
@@ -121,7 +116,7 @@
                             </div>
 
                             <!-- Modal Form -->
-                            <div class="form-fields">
+                            <form class="form-fields">
                                 <div class="form-group">
                                     <label for="title">Titre</label>
                                     <input
@@ -140,12 +135,12 @@
                                         name="category"
                                         required
                                     >
-                                        <option value="" disabled selected>
+                                        <!-- <option value="" disabled selected>
                                             Choisissez une catégorie
-                                        </option>
+                                        </option> -->
                                     </select>
                                 </div>
-                            </div>
+                            </form>
                             <div class="separator-line"></div>
                             <button type="submit" class="validate-btn">
                                 Valider
