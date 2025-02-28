@@ -1,8 +1,9 @@
 import { toggleError } from '../login/loginForm.js'
+import { BASEURL } from './variables.js'
 
-export async function fetchWorks(url) {
+export async function fetchWorks() {
     try {
-        const response = await fetch(url + 'works')
+        const response = await fetch(BASEURL + 'works')
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -14,9 +15,9 @@ export async function fetchWorks(url) {
     }
 }
 
-export async function fetchCategories(url) {
+export async function fetchCategories() {
     try {
-        const response = await fetch(url + 'categories')
+        const response = await fetch(BASEURL + 'categories')
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -28,9 +29,9 @@ export async function fetchCategories(url) {
     }
 }
 
-export async function fetchCredentials(url, body) {
+export async function fetchCredentials(body) {
     try {
-        const response = await fetch(url + 'users/login', {
+        const response = await fetch(BASEURL + 'users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
@@ -46,13 +47,13 @@ export async function fetchCredentials(url, body) {
     }
 }
 
-export async function deleteProject(projectId, url) {
+export async function deleteProject(projectId) {
     console.log(url + `works/${projectId}`)
 
     try {
         const token = localStorage.getItem('token')
 
-        const response = await fetch(url + `works/${projectId}`, {
+        const response = await fetch(BASEURL + `works/${projectId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,
