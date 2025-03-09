@@ -5,7 +5,10 @@ export function clearGallery() {
     GALLERY.innerHTML = ''
 }
 
-export function displayWorks(works, element) {
+export function displayWorks(element, works) {
+    element.innerHTML = ''
+    console.log(works)
+
     works.forEach((work) => {
         const figure = createFigure(work, element, true, false)
         element.appendChild(figure)
