@@ -2,6 +2,8 @@ import { toggleError } from '../login/loginForm.js'
 import { BASEURL } from './variables.js'
 
 export async function fetchWorks() {
+    console.log('fetch works')
+
     try {
         const response = await fetch(BASEURL + 'works')
         if (!response.ok) {
@@ -48,23 +50,22 @@ export async function fetchCredentials(body) {
 }
 
 export async function deleteProject(projectId) {
-    console.log(BASEURL + `works/${projectId}`)
-
     try {
         const token = localStorage.getItem('token')
+        console.log('token récupéré pour la requete DELETE')
 
-        const response = await fetch(BASEURL + `works/${projectId}`, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-
-        if (!response.ok) {
-            // toggleError()
-            throw new Error(`HTTP error! status: ${response.status}`)
+        if (token) {
+            const response = await fetch(BASEURL + `works/${projectId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            return response
         }
     } catch (error) {
+        console.log('erreur in deleteProject', error)
+
         throw error
     }
 }
