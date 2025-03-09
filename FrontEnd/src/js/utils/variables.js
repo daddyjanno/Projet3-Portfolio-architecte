@@ -1,4 +1,14 @@
+import { fetchCategories, fetchWorks } from './data.js'
+
 export const BASEURL = 'http://localhost:5678/api/'
+
+export const CATEGORIES = await fetchCategories()
+
+export let WORKS = await fetchWorks()
+
+export function filterWorks(workId) {
+    WORKS = [...WORKS.filter((work) => work.id !== workId)]
+}
 
 export const LOGO = document.getElementById('logo')
 export const LOGINBTN = document.getElementById('login')
