@@ -48,7 +48,7 @@ export function manageFiltersClick(works) {
             filterValue = defineFilterValue(filters, filterValue)
             filteredWorks = filterWorks(filterValue, works)
             clearGallery()
-            displayWorks(filteredWorks, GALLERY)
+            displayWorks(GALLERY, filteredWorks)
         })
     })
 }
