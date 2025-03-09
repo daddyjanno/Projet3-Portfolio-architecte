@@ -18,12 +18,8 @@ import { fetchWorks } from './js/utils/data.js'
 const works = await fetchWorks()
 
 function init() {
-    console.log('index')
-    console.log(works)
     let isModalOpen = false
     const hasToken = localStorage.getItem('token') ? true : false
-
-    console.log(isModalOpen, hasToken)
 
     displayWorks(GALLERY, works)
     displayFilters(CATEGORIES)
