@@ -2,8 +2,6 @@ import { toggleError } from '../login/loginForm.js'
 import { BASEURL } from './variables.js'
 
 export async function fetchWorks() {
-    console.log('fetch works')
-
     try {
         const response = await fetch(BASEURL + 'works')
         if (!response.ok) {
@@ -52,7 +50,6 @@ export async function fetchCredentials(body) {
 export async function deleteProject(projectId) {
     try {
         const token = localStorage.getItem('token')
-        console.log('token récupéré pour la requete DELETE')
 
         if (token) {
             const response = await fetch(BASEURL + `works/${projectId}`, {
@@ -64,8 +61,6 @@ export async function deleteProject(projectId) {
             return response
         }
     } catch (error) {
-        console.log('erreur in deleteProject', error)
-
         throw error
     }
 }
