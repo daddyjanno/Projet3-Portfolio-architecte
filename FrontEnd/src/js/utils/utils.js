@@ -8,7 +8,10 @@ export function unbold(element) {
 }
 
 export function returnToHomePage() {
-    document.location.href = '../FrontEnd/'
+    console.log('return to home')
+    window.location.pathname = '/'
+
+    // document.location.href = '/'
 }
 
 export function toggleEditionMode() {
