@@ -1,4 +1,4 @@
-import { categories } from '../../index.js'
+import { deleteProject } from '../utils/data.js'
 import {
     ADDPHOTOBTN,
     BACKTOMODAL,
@@ -7,8 +7,15 @@ import {
     MODALFIRSTVIEW,
     MODALGRID,
     MODALSECONDVIEW,
+    CATEGORIES,
+    filterWorks,
+    WORKS,
+    GALLERY,
 } from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
+import { displayWorks } from './gallery.js'
+
+let isFirstView = true
 
 export function toggleIsModalOpen(isModalOpen) {
     return !isModalOpen
@@ -21,27 +28,38 @@ function openModal() {
     }
 }
 function closeModal() {
+    MODAL.style.display = 'none'
+    document.querySelector('body').style.overflow = 'visible'
+    MODALFIRSTVIEW.style.display = 'flex'
+    MODALSECONDVIEW.style.display = 'none'
+}
+
+function closeModalOnClick() {
     MODALCLOSEBTN.addEventListener('click', () => {
-        MODAL.style.display = 'none'
-        document.querySelector('body').style.overflow = 'visible'
-        MODALFIRSTVIEW.style.display = 'flex'
-        MODALSECONDVIEW.style.display = 'none'
+        closeModal()
     })
 }
 
 function closeModalOnEsc() {
     window.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
-            MODAL.style.display = 'none'
-            MODALFIRSTVIEW.style.display = 'flex'
-            MODALSECONDVIEW.style.display = 'none'
+            closeModal()
         }
     })
 }
+function closeModalOnClickOutside() {
+    window.addEventListener('click', (event) => {
+        if (event.target == MODAL) {
+            closeModal()
+        }
+    })
+}
+
 function displayModalFirstView() {
     ADDPHOTOBTN.addEventListener('click', () => {
         MODALFIRSTVIEW.style.display = 'none'
         MODALSECONDVIEW.style.display = 'flex'
+        isFirstView = true
     })
 }
 function displayModalSecondView() {
@@ -50,37 +68,56 @@ function displayModalSecondView() {
         MODALSECONDVIEW.style.display = 'none'
     })
 }
-export function handleModal(isModalOpen) {
-    if (isModalOpen) {
-        closeModal()
-        closeModalOnEsc()
-        populateModalCategorySelect()
-        displayModalFirstView()
-        displayModalSecondView()
-    }
-    openModal()
-}
+
 export function displayWorksInModal(works) {
+    console.log('displayWorksInModal')
+
     MODALGRID.innerHTML = ''
     works.forEach((work) => {
         createFigure(work, MODALGRID, false, true)
     })
 }
 
+export function deleteWorkInModal(workId) {
+    const confirm = window.confirm(
+        'Êtes-vous sûr de vouloir supprimer cette photo ?'
+    )
+    if (!confirm) return
+    deleteProject(workId)
+    filterWorks(workId)
+    displayWorksInModal(WORKS)
+    displayWorks(GALLERY, WORKS)
+}
+
 function populateModalCategorySelect() {
     const categorySelect = document.getElementById('category-select')
-    categorySelect.innerHTML = ''
 
-    const defaultOption = document.createElement('option')
-    defaultOption.value = ''
-    defaultOption.disabled = true
-    defaultOption.selected = true
-    categorySelect.appendChild(defaultOption)
-
-    categories.forEach((category) => {
+    CATEGORIES.forEach((category) => {
         const option = document.createElement('option')
         option.value = category.id
         option.textContent = category.name
         categorySelect.appendChild(option)
     })
+}
+
+function renderPreview() {
+    const uploadBtn = document.getElementById('file')
+    uploadBtn.addEventListener('submit', () => {
+        console.log('upload btn')
+        console.log(document.getElementById('file').files[0])
+    })
+}
+
+export function handleModal(isModalOpen, works) {
+    if (isModalOpen) {
+        closeModalOnClick()
+        closeModalOnEsc()
+        closeModalOnClickOutside()
+        populateModalCategorySelect()
+        displayModalFirstView()
+        displayModalSecondView()
+        displayWorksInModal(works)
+        renderPreview()
+    }
+    openModal()
 }
