@@ -11,6 +11,9 @@ import {
     filterWorks,
     WORKS,
     GALLERY,
+    UPLOADBTN,
+    IMGPREVIEW,
+    UPLOADLAYOUT,
 } from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
 import { displayWorks } from './gallery.js'
@@ -101,11 +104,25 @@ function populateModalCategorySelect() {
 }
 
 function renderPreview() {
-    const uploadBtn = document.getElementById('file')
-    uploadBtn.addEventListener('submit', () => {
-        console.log('upload btn')
-        console.log(document.getElementById('file').files[0])
+    UPLOADBTN.addEventListener('change', () => {
+        getImageData()
     })
+}
+
+function getImageData() {
+    const files = UPLOADBTN.files[0]
+    console.log(files)
+
+    if (files) {
+        IMGPREVIEW.innerHTML = ''
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(files)
+        fileReader.addEventListener('load', function () {
+            UPLOADLAYOUT.style.display = 'none'
+            IMGPREVIEW.style.display = 'flex'
+            IMGPREVIEW.innerHTML = '<img src="' + this.result + '" />'
+        })
+    }
 }
 
 export function handleModal(isModalOpen, works) {
