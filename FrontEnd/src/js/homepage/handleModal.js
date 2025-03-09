@@ -14,6 +14,8 @@ import {
     UPLOADBTN,
     IMGPREVIEW,
     UPLOADLAYOUT,
+    IMGDELETE,
+    DELETEBTN,
 } from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
 import { displayWorks } from './gallery.js'
@@ -114,15 +116,27 @@ function getImageData() {
     console.log(files)
 
     if (files) {
-        IMGPREVIEW.innerHTML = ''
         const fileReader = new FileReader()
         fileReader.readAsDataURL(files)
         fileReader.addEventListener('load', function () {
             UPLOADLAYOUT.style.display = 'none'
             IMGPREVIEW.style.display = 'flex'
-            IMGPREVIEW.innerHTML = '<img src="' + this.result + '" />'
+            const img = document.createElement('img')
+            img.classList.add('img-previewDisplay')
+            img.src = `${this.result}`
+            IMGPREVIEW.appendChild(img)
         })
     }
+}
+
+function deleteImage() {
+    IMGPREVIEW.addEventListener('click', () => {
+        console.log('toto')
+        const img = document.querySelector('.img-previewDisplay')
+        IMGPREVIEW.removeChild(img)
+        UPLOADLAYOUT.style.display = 'flex'
+        IMGPREVIEW.style.display = 'none'
+    })
 }
 
 export function handleModal(isModalOpen, works) {
@@ -135,6 +149,7 @@ export function handleModal(isModalOpen, works) {
         displayModalSecondView()
         displayWorksInModal(works)
         renderPreview()
+        deleteImage()
     }
     openModal()
 }
