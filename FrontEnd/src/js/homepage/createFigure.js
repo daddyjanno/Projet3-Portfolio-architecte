@@ -1,5 +1,4 @@
-import { deleteProject } from '../utils/data.js'
-import { BASEURL } from '../utils/variables.js'
+import { deleteWorkInModal } from './handleModal.js'
 
 export function createFigure(
     work,
@@ -9,6 +8,7 @@ export function createFigure(
 ) {
     const figure = document.createElement('figure')
     const img = createImg(work, figure)
+
     if (caption) {
         createCaption(work, figure)
     }
@@ -44,11 +44,8 @@ export function createDeleteBtn(work, element) {
     deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
     element.appendChild(deleteBtn)
     deleteBtn.addEventListener('click', (event) => {
-        console.log(event)
-
-        event.preventDefault()
-
-        deleteProject(work.id, BASEURL)
+        console.log('deletebtn click')
+        deleteWorkInModal(work.id)
     })
 
     return deleteBtn
