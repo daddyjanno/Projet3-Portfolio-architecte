@@ -67,12 +67,7 @@ li:hover {
 #logo {
     cursor: pointer;
 }
-input:focus {
-    outline: none;
-}
-textarea:focus {
-    outline: none;
-}
+
 .fa-instagram {
     font-size: 1.5em;
 }
