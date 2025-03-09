@@ -7,7 +7,6 @@ export function clearGallery() {
 
 export function displayWorks(element, works) {
     element.innerHTML = ''
-    console.log(works)
 
     works.forEach((work) => {
         const figure = createFigure(work, element, true, false)
