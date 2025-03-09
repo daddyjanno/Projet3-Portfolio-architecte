@@ -5,7 +5,7 @@ import { LOGINBTN, LOGO, SUBMITBTN } from '../utils/variables.js'
 
 console.log(window.location.pathname)
 
-if (window.location.pathname === '/FrontEnd/login.html') {
+if (window.location.pathname === '/login.html') {
     bold(LOGINBTN)
 }
 
