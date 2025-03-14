@@ -1,4 +1,4 @@
-import { toggleError } from '../login/loginForm.js'
+import { toggleError } from './utils.js'
 import { BASEURL } from './variables.js'
 
 export async function fetchWorks() {
@@ -59,6 +59,28 @@ export async function deleteProject(projectId) {
                 },
             })
             return response
+        }
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function createProject(data) {
+    try {
+        const token = localStorage.getItem('token')
+
+        if (token) {
+            const response = await fetch(BASEURL + `works`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: data,
+            })
+            if (response.ok) {
+                alert('Projet correctement ajouté en base de données')
+            }
+            return response.json()
         }
     } catch (error) {
         throw error
