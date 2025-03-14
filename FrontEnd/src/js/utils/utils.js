@@ -18,3 +18,11 @@ export function toggleEditionMode() {
     EDITIONMODE.classList.toggle('hidden')
     EDITIONBTN.classList.toggle('hidden')
 }
+
+export function toggleError() {
+    const errorMessage = document.querySelector('.error')
+    errorMessage.classList.toggle('hidden')
+    setTimeout(() => {
+        errorMessage.classList.toggle('hidden')
+    }, 3000)
+}
