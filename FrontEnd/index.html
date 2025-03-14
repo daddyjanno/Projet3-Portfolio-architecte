@@ -103,7 +103,7 @@
                             </span>
                             <h2 class="modal-title">Ajout photo</h2>
                             <!-- Upload zone -->
-                            <div class="upload-zone">
+                            <!-- <div class="upload-zone">
                                 <div class="upload-layout">
                                     <i class="fa-regular fa-image"></i>
                                     <label id="upload-label" for="upload-btn"
@@ -130,10 +130,40 @@
                                         >&times;</span
                                     >
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Modal Form -->
-                            <form class="form-fields">
+                            <form class="form-fields" id="form-data">
+                                <div class="upload-zone">
+                                    <div class="upload-layout">
+                                        <i class="fa-regular fa-image"></i>
+                                        <label
+                                            id="upload-label"
+                                            for="upload-btn"
+                                            >+ Ajouter photo
+                                            <input
+                                                type="file"
+                                                id="upload-btn"
+                                                name="upload-btn"
+                                                class="upload-btn"
+                                                accept=".jpg, .png"
+                                            />
+                                        </label>
+                                        <p class="upload-instructions">
+                                            jpg, png : 4mo max
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="upload-preview"
+                                        style="display: none"
+                                    >
+                                        <span
+                                            id="img-delete"
+                                            aria-label="Supprimer l'image chargée"
+                                            >&times;</span
+                                        >
+                                    </div>
+                                </div>
                                 <label for="title">Titre</label>
                                 <input
                                     type="text"
@@ -142,21 +172,24 @@
                                     required
                                 />
 
-                                <label for="category-select">Catégorie</label>
-                                <select
-                                    id="category-select"
-                                    name="category"
-                                    required
-                                >
+                                <label for="category">Catégorie</label>
+                                <select id="category" name="category" required>
                                     <option value="" disabled selected>
                                         Choisissez une catégorie
                                     </option>
                                 </select>
+                                <div class="separator-line"></div>
+                                <span class="error hidden"
+                                    >“Veuillez remplir tous les champs”</span
+                                >
+                                <button
+                                    type="submit"
+                                    class="validate-btn btn"
+                                    id="form-submit"
+                                >
+                                    Valider
+                                </button>
                             </form>
-                            <div class="separator-line"></div>
-                            <button type="submit" class="validate-btn btn">
-                                Valider
-                            </button>
                         </div>
                     </div>
                 </div>
