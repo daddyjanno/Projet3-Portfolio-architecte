@@ -1,4 +1,5 @@
-import { deleteProject } from '../utils/data.js'
+import { createProject, deleteProject } from '../utils/data.js'
+import { toggleError } from '../utils/utils.js'
 import {
     ADDPHOTOBTN,
     BACKTOMODAL,
@@ -14,13 +15,11 @@ import {
     UPLOADBTN,
     IMGPREVIEW,
     UPLOADLAYOUT,
-    IMGDELETE,
-    DELETEBTN,
+    MODALFORM,
+    MODALSUBMIT,
 } from '../utils/variables.js'
 import { createFigure } from './createFigure.js'
 import { displayWorks } from './gallery.js'
-
-let isFirstView = true
 
 export function toggleIsModalOpen(isModalOpen) {
     return !isModalOpen
@@ -61,10 +60,13 @@ function closeModalOnClickOutside() {
 }
 
 function displayModalFirstView() {
+    MODALFIRSTVIEW.style.display = 'none'
+    MODALSECONDVIEW.style.display = 'flex'
+}
+
+function displayModalFirstViewOnclick() {
     ADDPHOTOBTN.addEventListener('click', () => {
-        MODALFIRSTVIEW.style.display = 'none'
-        MODALSECONDVIEW.style.display = 'flex'
-        isFirstView = true
+        displayModalFirstView()
     })
 }
 function displayModalSecondView() {
@@ -95,7 +97,7 @@ export function deleteWorkInModal(workId) {
 }
 
 function populateModalCategorySelect() {
-    const categorySelect = document.getElementById('category-select')
+    const categorySelect = document.getElementById('category')
 
     CATEGORIES.forEach((category) => {
         const option = document.createElement('option')
@@ -122,6 +124,7 @@ function getImageData() {
             UPLOADLAYOUT.style.display = 'none'
             IMGPREVIEW.style.display = 'flex'
             const img = document.createElement('img')
+            img.id = 'image'
             img.classList.add('img-previewDisplay')
             img.src = `${this.result}`
             IMGPREVIEW.appendChild(img)
@@ -130,13 +133,51 @@ function getImageData() {
 }
 
 function deleteImage() {
-    IMGPREVIEW.addEventListener('click', () => {
-        console.log('toto')
-        const img = document.querySelector('.img-previewDisplay')
+    const img = document.querySelector('.img-previewDisplay')
+    if (img) {
         IMGPREVIEW.removeChild(img)
-        UPLOADLAYOUT.style.display = 'flex'
-        IMGPREVIEW.style.display = 'none'
+    }
+    UPLOADLAYOUT.style.display = 'flex'
+    IMGPREVIEW.style.display = 'none'
+}
+
+function deleteImgOnclick() {
+    IMGPREVIEW.addEventListener('click', () => {
+        deleteImage()
     })
+}
+
+function handleSubmit() {
+    MODALSUBMIT.addEventListener('click', (event) => {
+        event.preventDefault()
+        deleteImage()
+        postFormData()
+        MODALFORM.reset()
+        displayWorksInModal(WORKS)
+        displayModalFirstView()
+        displayWorks(GALLERY, WORKS)
+    })
+}
+
+function postFormData() {
+    const titleForm = document.getElementById('title').value
+    const categoryForm = document.getElementById('category').value
+    const imageForm = document.getElementById('upload-btn').files[0]
+
+    console.log(imageForm, titleForm, categoryForm)
+
+    if (!imageForm || !titleForm || !categoryForm) {
+        toggleError()
+        return
+    }
+    console.log(titleForm, categoryForm, imageForm)
+
+    const formData = new FormData()
+    formData.append('image', imageForm)
+    formData.append('title', titleForm)
+    formData.append('category', categoryForm)
+
+    createProject(formData)
 }
 
 export function handleModal(isModalOpen, works) {
@@ -145,11 +186,12 @@ export function handleModal(isModalOpen, works) {
         closeModalOnEsc()
         closeModalOnClickOutside()
         populateModalCategorySelect()
-        displayModalFirstView()
+        displayModalFirstViewOnclick()
         displayModalSecondView()
         displayWorksInModal(works)
         renderPreview()
-        deleteImage()
+        deleteImgOnclick()
+        handleSubmit()
     }
     openModal()
 }
