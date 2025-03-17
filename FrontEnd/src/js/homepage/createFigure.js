@@ -3,10 +3,12 @@ import { deleteWorkInModal } from './handleModal.js'
 export function createFigure(
     work,
     element,
+    id,
     caption = false,
     deleteBtn = false
 ) {
     const figure = document.createElement('figure')
+    figure.dataset.id = id
     const img = createImg(work, figure)
 
     if (caption) {
