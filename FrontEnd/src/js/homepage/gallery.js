@@ -9,7 +9,7 @@ export function displayWorks(element, works) {
     element.innerHTML = ''
 
     works.forEach((work) => {
-        const figure = createFigure(work, element, true, false)
+        const figure = createFigure(work, element, work.id, true, false)
         element.appendChild(figure)
     })
 }

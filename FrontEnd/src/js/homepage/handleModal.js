@@ -51,6 +51,7 @@ function closeModalOnEsc() {
         }
     })
 }
+
 function closeModalOnClickOutside() {
     window.addEventListener('click', (event) => {
         if (event.target == MODAL) {
@@ -81,7 +82,7 @@ export function displayWorksInModal(works) {
 
     MODALGRID.innerHTML = ''
     works.forEach((work) => {
-        createFigure(work, MODALGRID, false, true)
+        createFigure(work, MODALGRID, work.id, false, true)
     })
 }
 
