@@ -10,8 +10,6 @@ export function unbold(element) {
 export function returnToHomePage() {
     console.log('return to home')
     window.location.pathname = '/'
-
-    // document.location.href = '/'
 }
 
 export function toggleEditionMode() {
@@ -39,3 +37,5 @@ export function deleteWork(workId) {
 
     elementsToDelete.forEach((el) => el.remove())
 }
+
+export function createWork() {}
