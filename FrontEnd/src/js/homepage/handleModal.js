@@ -71,15 +71,6 @@ function displayModalSecondView() {
     })
 }
 
-// export function displayWorksInModal(works) {
-//     console.log('displayWorksInModal')
-
-//     MODALGRID.innerHTML = ''
-//     works.forEach((work) => {
-//         createFigure(work, MODALGRID, work.id, false, true)
-//     })
-// }
-
 export function deleteWorkInModal(workId) {
     const confirm = window.confirm(
         'Êtes-vous sûr de vouloir supprimer cette photo ?'
@@ -147,9 +138,9 @@ function handleSubmit() {
         postFormData()
         MODALFORM.reset()
         closeModal()
-        displayModalFirstView()
-        displayWorks(GALLERY, WORKS, true, false)
-        displayWorks(MODALGRID, WORKS, false, true)
+        // displayModalFirstView()
+        // displayWorks(GALLERY, WORKS, true, false)
+        // displayWorks(MODALGRID, WORKS, false, true)
     })
 }
 
