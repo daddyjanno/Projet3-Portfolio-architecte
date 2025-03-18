@@ -1,15 +1,13 @@
 import { createProject, deleteProject } from '../utils/data.js'
-import { toggleError } from '../utils/utils.js'
+import { deleteWork, toggleError } from '../utils/utils.js'
 import {
     ADDPHOTOBTN,
     BACKTOMODAL,
     MODAL,
     MODALCLOSEBTN,
     MODALFIRSTVIEW,
-    MODALGRID,
     MODALSECONDVIEW,
     CATEGORIES,
-    filterWorks,
     WORKS,
     GALLERY,
     UPLOADBTN,
@@ -17,8 +15,8 @@ import {
     UPLOADLAYOUT,
     MODALFORM,
     MODALSUBMIT,
+    MODALGRID,
 } from '../utils/variables.js'
-import { createFigure } from './createFigure.js'
 import { displayWorks } from './gallery.js'
 
 export function toggleIsModalOpen(isModalOpen) {
@@ -61,13 +59,9 @@ function closeModalOnClickOutside() {
 }
 
 function displayModalFirstView() {
-    MODALFIRSTVIEW.style.display = 'none'
-    MODALSECONDVIEW.style.display = 'flex'
-}
-
-function displayModalFirstViewOnclick() {
     ADDPHOTOBTN.addEventListener('click', () => {
-        displayModalFirstView()
+        MODALFIRSTVIEW.style.display = 'none'
+        MODALSECONDVIEW.style.display = 'flex'
     })
 }
 function displayModalSecondView() {
@@ -77,14 +71,14 @@ function displayModalSecondView() {
     })
 }
 
-export function displayWorksInModal(works) {
-    console.log('displayWorksInModal')
+// export function displayWorksInModal(works) {
+//     console.log('displayWorksInModal')
 
-    MODALGRID.innerHTML = ''
-    works.forEach((work) => {
-        createFigure(work, MODALGRID, work.id, false, true)
-    })
-}
+//     MODALGRID.innerHTML = ''
+//     works.forEach((work) => {
+//         createFigure(work, MODALGRID, work.id, false, true)
+//     })
+// }
 
 export function deleteWorkInModal(workId) {
     const confirm = window.confirm(
@@ -92,9 +86,7 @@ export function deleteWorkInModal(workId) {
     )
     if (!confirm) return
     deleteProject(workId)
-    filterWorks(workId)
-    displayWorksInModal(WORKS)
-    displayWorks(GALLERY, WORKS)
+    deleteWork(workId)
 }
 
 function populateModalCategorySelect() {
@@ -133,7 +125,7 @@ function getImageData() {
     }
 }
 
-function deleteImage() {
+function deleteImagePreview() {
     const img = document.querySelector('.img-previewDisplay')
     if (img) {
         IMGPREVIEW.removeChild(img)
@@ -144,19 +136,20 @@ function deleteImage() {
 
 function deleteImgOnclick() {
     IMGPREVIEW.addEventListener('click', () => {
-        deleteImage()
+        deleteImagePreview()
     })
 }
 
 function handleSubmit() {
     MODALSUBMIT.addEventListener('click', (event) => {
         event.preventDefault()
-        deleteImage()
+        deleteImagePreview()
         postFormData()
         MODALFORM.reset()
-        displayWorksInModal(WORKS)
+        closeModal()
         displayModalFirstView()
-        displayWorks(GALLERY, WORKS)
+        displayWorks(GALLERY, WORKS, true, false)
+        displayWorks(MODALGRID, WORKS, false, true)
     })
 }
 
@@ -164,8 +157,6 @@ function postFormData() {
     const titleForm = document.getElementById('title').value
     const categoryForm = document.getElementById('category').value
     const imageForm = document.getElementById('upload-btn').files[0]
-
-    console.log(imageForm, titleForm, categoryForm)
 
     if (!imageForm || !titleForm || !categoryForm) {
         toggleError()
@@ -187,9 +178,8 @@ export function handleModal(isModalOpen, works) {
         closeModalOnEsc()
         closeModalOnClickOutside()
         populateModalCategorySelect()
-        displayModalFirstViewOnclick()
+        displayModalFirstView()
         displayModalSecondView()
-        displayWorksInModal(works)
         renderPreview()
         deleteImgOnclick()
         handleSubmit()
