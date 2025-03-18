@@ -5,11 +5,11 @@ export function clearGallery() {
     GALLERY.innerHTML = ''
 }
 
-export function displayWorks(element, works) {
+export function displayWorks(element, works, caption, deleteBtn) {
     element.innerHTML = ''
 
     works.forEach((work) => {
-        const figure = createFigure(work, element, work.id, true, false)
+        const figure = createFigure(work, element, work.id, caption, deleteBtn)
         element.appendChild(figure)
     })
 }
