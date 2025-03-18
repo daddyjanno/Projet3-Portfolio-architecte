@@ -4,15 +4,12 @@ import {
     FILTERS,
     GALLERY,
     LOGINBTN,
+    MODALGRID,
 } from './js/utils/variables.js'
 import { displayFilters, manageFiltersClick } from './js/homepage/filters.js'
 import { displayWorks } from './js/homepage/gallery.js'
 import { toggleEditionMode, unbold } from './js/utils/utils.js'
-import {
-    displayWorksInModal,
-    handleModal,
-    toggleIsModalOpen,
-} from './js/homepage/handleModal.js'
+import { handleModal, toggleIsModalOpen } from './js/homepage/handleModal.js'
 import { fetchWorks } from './js/utils/data.js'
 
 const works = await fetchWorks()
@@ -21,7 +18,8 @@ function init() {
     let isModalOpen = false
     const hasToken = localStorage.getItem('token') ? true : false
 
-    displayWorks(GALLERY, works)
+    displayWorks(GALLERY, works, true, false)
+    displayWorks(MODALGRID, works, false, true)
     displayFilters(CATEGORIES)
     manageFiltersClick(works)
 
@@ -45,8 +43,6 @@ function init() {
         EDITIONBTN.addEventListener('click', () => {
             isModalOpen = toggleIsModalOpen(isModalOpen)
             handleModal(isModalOpen, works)
-
-            displayWorksInModal(works)
         })
     }
 }
