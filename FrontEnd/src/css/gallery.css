@@ -24,4 +24,5 @@
 
 .gallery img {
     width: 100%;
+    margin: auto 0;
 }
