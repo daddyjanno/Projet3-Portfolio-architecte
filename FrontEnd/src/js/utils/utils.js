@@ -33,8 +33,6 @@ export function filterWorks(workId) {
 export function deleteWork(workId) {
     const elementsToDelete = document.querySelectorAll(`[data-id~="${workId}"]`)
 
-    console.log(elementsToDelete)
-
     elementsToDelete.forEach((el) => el.remove())
 }
 
