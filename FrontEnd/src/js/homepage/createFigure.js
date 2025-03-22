@@ -1,5 +1,5 @@
 import { generateId } from '../utils/utils.js'
-import { MODALGRID, WORKS } from '../utils/variables.js'
+import { MODALGRID } from '../utils/variables.js'
 import { deleteWork } from './handleModal.js'
 
 export function createFigure(work) {
@@ -19,9 +19,10 @@ export function createFigure(work) {
 }
 
 export function createFigureInModal(work) {
-    const id = work.id ? work.id : generateId()
-    const html = `
-            <figure data-id=${id}>
+    const figure = document.createElement('figure')
+    figure.dataset.id = work.id
+    figure.innerHTML = `
+           
                 <img 
                     src= ${work.imageUrl} 
                     alt=${work.title}
@@ -30,17 +31,11 @@ export function createFigureInModal(work) {
                     <i class="fa-solid fa-trash-can">
                     </i>
                 </span>
-            </figure>
+          
         `
-    MODALGRID.innerHTML += html
-    handleFigureInModal(id)
-}
-
-export function handleFigureInModal(workId) {
-    document.querySelector('.delete-btn').addEventListener('click', (event) => {
-        console.log('delete click')
-        console.log(workId)
-
-        deleteWork(workId)
+    figure.querySelector('.delete-btn').addEventListener('click', () => {
+        console.log(figure.dataset.id)
+        deleteWork(figure.dataset.id)
     })
+    return figure
 }
