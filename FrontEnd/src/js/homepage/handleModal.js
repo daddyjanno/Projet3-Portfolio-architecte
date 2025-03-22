@@ -1,5 +1,5 @@
 import { createProject, deleteProject } from '../utils/data.js'
-import { deleteWork, toggleError } from '../utils/utils.js'
+import { deleteWork as deleteWorkInModal, toggleError } from '../utils/utils.js'
 import {
     ADDPHOTOBTN,
     BACKTOMODAL,
@@ -17,7 +17,7 @@ import {
     MODALSUBMIT,
     MODALGRID,
 } from '../utils/variables.js'
-import { displayWorks } from './gallery.js'
+import { displayWork } from './gallery.js'
 
 export function toggleIsModalOpen(isModalOpen) {
     return !isModalOpen
@@ -71,13 +71,13 @@ function displayModalSecondView() {
     })
 }
 
-export function deleteWorkInModal(workId) {
+export function deleteWork(workId) {
     const confirm = window.confirm(
         'Êtes-vous sûr de vouloir supprimer cette photo ?'
     )
     if (!confirm) return
     deleteProject(workId)
-    deleteWork(workId)
+    deleteWorkInModal(workId)
 }
 
 function populateModalCategorySelect() {
@@ -138,9 +138,7 @@ function handleSubmit() {
         postFormData()
         MODALFORM.reset()
         closeModal()
-        // displayModalFirstView()
-        // displayWorks(GALLERY, WORKS, true, false)
-        // displayWorks(MODALGRID, WORKS, false, true)
+        displayModalFirstView()
     })
 }
 
@@ -160,7 +158,7 @@ function postFormData() {
     formData.append('title', titleForm)
     formData.append('category', categoryForm)
 
-    createProject(formData)
+    displayWork(createProject(formData))
 }
 
 export function handleModal(isModalOpen, works) {
