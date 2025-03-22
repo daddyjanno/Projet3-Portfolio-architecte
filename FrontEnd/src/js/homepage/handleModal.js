@@ -8,16 +8,13 @@ import {
     MODALFIRSTVIEW,
     MODALSECONDVIEW,
     CATEGORIES,
-    WORKS,
-    GALLERY,
     UPLOADBTN,
     IMGPREVIEW,
     UPLOADLAYOUT,
     MODALFORM,
     MODALSUBMIT,
-    MODALGRID,
 } from '../utils/variables.js'
-import { displayWork } from './gallery.js'
+import { displayWork, displayWorkInModal } from './gallery.js'
 
 export function toggleIsModalOpen(isModalOpen) {
     return !isModalOpen
@@ -76,8 +73,8 @@ export function deleteWork(workId) {
         'Êtes-vous sûr de vouloir supprimer cette photo ?'
     )
     if (!confirm) return
-    deleteProject(workId)
     deleteWorkInModal(workId)
+    deleteProject(workId)
 }
 
 function populateModalCategorySelect() {
@@ -99,7 +96,6 @@ function renderPreview() {
 
 function getImageData() {
     const files = UPLOADBTN.files[0]
-    console.log(files)
 
     if (files) {
         const fileReader = new FileReader()
@@ -142,7 +138,7 @@ function handleSubmit() {
     })
 }
 
-function postFormData() {
+async function postFormData() {
     const titleForm = document.getElementById('title').value
     const categoryForm = document.getElementById('category').value
     const imageForm = document.getElementById('upload-btn').files[0]
@@ -158,10 +154,13 @@ function postFormData() {
     formData.append('title', titleForm)
     formData.append('category', categoryForm)
 
-    displayWork(createProject(formData))
+    const response = await createProject(formData)
+    console.log(response)
+    displayWork(response)
+    displayWorkInModal(response)
 }
 
-export function handleModal(isModalOpen, works) {
+export function handleModal(isModalOpen) {
     if (isModalOpen) {
         closeModalOnClick()
         closeModalOnEsc()
