@@ -1,6 +1,6 @@
 import { FILTERS, GALLERY } from '../utils/variables.js'
 import { createFilter } from './createFilter.js'
-import { clearGallery, displayWorks } from './gallery.js'
+import { clearGallery, displayWork } from './gallery.js'
 
 export function displayFilters(categories) {
     const all = createFilter({ name: 'Tous' })
@@ -48,7 +48,9 @@ export function manageFiltersClick(works) {
             filterValue = defineFilterValue(filters, filterValue)
             filteredWorks = filterWorks(filterValue, works)
             clearGallery()
-            displayWorks(GALLERY, filteredWorks)
+            filterWorks.forEach((el) => {
+                displayWork(el)
+            })
         })
     })
 }
