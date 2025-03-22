@@ -64,6 +64,12 @@ li:hover {
     color: var(--secondary-color);
 }
 
+figure {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
 #logo {
     cursor: pointer;
 }
