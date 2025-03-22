@@ -50,6 +50,7 @@ export async function fetchCredentials(body) {
 export async function deleteProject(projectId) {
     try {
         const token = localStorage.getItem('token')
+        console.log(token)
 
         if (token) {
             const response = await fetch(BASEURL + `works/${projectId}`, {
@@ -77,9 +78,7 @@ export async function createProject(data) {
                 },
                 body: data,
             })
-            if (response.ok) {
-                alert('Projet correctement ajouté en base de données')
-            }
+
             return response.json()
         }
     } catch (error) {
