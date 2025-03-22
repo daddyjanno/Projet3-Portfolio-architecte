@@ -17,6 +17,7 @@ function init() {
     initDisplay(WORKS)
     manageFiltersClick(WORKS)
     displayFilters(CATEGORIES)
+    manageFiltersClick(WORKS)
 
     LOGINBTN.addEventListener('click', () => {
         if (LOGINBTN.innerText === 'login') {
