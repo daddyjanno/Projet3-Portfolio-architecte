@@ -1,54 +1,46 @@
-import { deleteWorkInModal } from './handleModal.js'
+import { generateId } from '../utils/utils.js'
+import { MODALGRID, WORKS } from '../utils/variables.js'
+import { deleteWork } from './handleModal.js'
 
-export function createFigure(
-    work,
-    element,
-    id,
-    caption = false,
-    deleteBtn = false
-) {
-    const figure = document.createElement('figure')
-    figure.dataset.id = id
-    const img = createImg(work, figure)
-
-    if (caption) {
-        createCaption(work, figure)
-    }
-    if (deleteBtn) {
-        createDeleteBtn(work, figure)
-    }
-
-    element.appendChild(figure)
-
-    return figure
-}
-export function createCaption(work, element) {
-    const figCaption = document.createElement('figcaption')
-    figCaption.innerText = work.title
-    element.appendChild(figCaption)
-
-    return figCaption
+export function createFigure(work) {
+    const id = work.id ? work.id : generateId()
+    const html = `
+        <figure data-id=${id}>
+            <img 
+                src=${work.imageUrl}
+                alt=${work.title}
+            >
+            <figcaption>
+                ${work.title}
+            </figcaption>
+        </figure>
+    `
+    return html
 }
 
-export function createImg(work, element) {
-    const img = document.createElement('img')
-    img.src = work.imageUrl
-    img.alt = work.title
-
-    element.appendChild(img)
-
-    return img
+export function createFigureInModal(work) {
+    const id = work.id ? work.id : generateId()
+    const html = `
+            <figure data-id=${id}>
+                <img 
+                    src= ${work.imageUrl} 
+                    alt=${work.title}
+                >
+                <span class="delete-btn">
+                    <i class="fa-solid fa-trash-can">
+                    </i>
+                </span>
+            </figure>
+        `
+    MODALGRID.innerHTML += html
+    handleFigureInModal(id)
 }
 
-export function createDeleteBtn(work, element) {
-    const deleteBtn = document.createElement('span')
-    deleteBtn.classList.add('delete-btn')
-    deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
-    element.appendChild(deleteBtn)
-    deleteBtn.addEventListener('click', (event) => {
-        console.log('deletebtn click')
-        deleteWorkInModal(work.id)
+export function handleFigureInModal(workId) {
+    document.querySelector('.delete-btn').addEventListener('click', (event) => {
+        console.log('delete click')
+        console.log(workId)
+
+        deleteWork(workId)
     })
-
-    return deleteBtn
 }
