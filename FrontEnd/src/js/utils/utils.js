@@ -1,4 +1,4 @@
-import { EDITIONBTN, EDITIONMODE, WORKS } from './variables.js'
+import { EDITIONBTN, EDITIONMODE } from './variables.js'
 
 export function bold(element) {
     element.classList.add('bold')
@@ -23,19 +23,4 @@ export function toggleError() {
     setTimeout(() => {
         errorMessage.classList.toggle('hidden')
     }, 3000)
-}
-
-export function filterWorks(workId) {
-    WORKS = [...WORKS.filter((work) => work.id !== workId)]
-    return WORKS
-}
-
-export function deleteWork(workId) {
-    const elementsToDelete = document.querySelectorAll(`[data-id~="${workId}"]`)
-
-    elementsToDelete.forEach((el) => el.remove())
-}
-
-export function generateId() {
-    return 'id' + Math.random().toString(16).slice(2)
 }
