@@ -1,6 +1,11 @@
-import { fetchCredentials } from './utils/data.js'
-import { bold, returnToHomePage, unbold } from './utils/utils.js'
-import { LOGINBTN, LOGO, SUBMITBTN } from './utils/variables.js'
+import { fetchCredentials } from './js/utils/data.js'
+import {
+    bold,
+    returnToHomePage,
+    toggleError,
+    unbold,
+} from './js/utils/utils.js'
+import { LOGINBTN, LOGO, SUBMITBTN } from './js/utils/variables.js'
 
 if (window.location.pathname === '/login.html') {
     bold(LOGINBTN)
@@ -15,7 +20,16 @@ if (window.location.pathname === '/login.html') {
 
 async function handleSubmit(event) {
     event.preventDefault()
-    const body = handleLoginForm()
+    const email = document.querySelector('#email').value
+    const password = document.querySelector('#password').value
+
+    if (!email || !password) {
+        toggleError()
+        return
+    }
+
+    const body = { email, password }
+
     const response = await fetchCredentials(body)
 
     if (response.token) {
@@ -23,13 +37,6 @@ async function handleSubmit(event) {
         unbold(LOGINBTN)
         returnToHomePage()
     }
-}
-
-export function handleLoginForm() {
-    const email = document.querySelector('#email').value
-    const password = document.querySelector('#password').value
-    const body = { email, password }
-    return body
 }
 
 export function storeToken(data) {
