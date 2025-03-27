@@ -1,4 +1,3 @@
-import { toggleError } from './utils.js'
 import { BASEURL } from './variables.js'
 
 export async function fetchWorks() {
@@ -30,6 +29,8 @@ export async function fetchCategories() {
 }
 
 export async function fetchCredentials(body) {
+    console.log(body)
+
     try {
         const response = await fetch(BASEURL + 'users/login', {
             method: 'POST',
@@ -37,7 +38,6 @@ export async function fetchCredentials(body) {
             body: JSON.stringify(body),
         })
         if (!response.ok) {
-            toggleError()
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
