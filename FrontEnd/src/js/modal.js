@@ -153,12 +153,13 @@ async function postFormData() {
         toggleError()
         return
     }
-    console.log(titleForm, categoryForm, imageForm)
 
     const formData = new FormData()
     formData.append('image', imageForm)
     formData.append('title', titleForm)
     formData.append('category', categoryForm)
+
+    console.log(formData)
 
     const response = await createProject(formData)
     displayWork(response)
