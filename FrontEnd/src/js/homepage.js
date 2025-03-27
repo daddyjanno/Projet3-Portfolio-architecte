@@ -103,11 +103,6 @@ function displayFilters(categories) {
     })
 }
 
-// function filterWorks(workId) {
-//     WORKS = [...WORKS.filter((work) => work.id !== workId)]
-//     return WORKS
-// }
-
 function defineFilterValue(filters, filterValue) {
     for (const item of filters) {
         if (item.classList.contains('active')) {
