@@ -159,8 +159,6 @@ async function postFormData() {
     formData.append('title', titleForm)
     formData.append('category', categoryForm)
 
-    console.log(formData)
-
     const response = await createProject(formData)
     displayWork(response)
     displayWorkInModal(response)
