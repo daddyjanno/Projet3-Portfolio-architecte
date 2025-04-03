@@ -1,10 +1,5 @@
 import { fetchCredentials } from './js/utils/data.js'
-import {
-    bold,
-    returnToHomePage,
-    toggleError,
-    unbold,
-} from './js/utils/utils.js'
+import { bold, returnToHomePage, unbold } from './js/utils/utils.js'
 import { LOGINBTN, LOGO, SUBMITBTN } from './js/utils/variables.js'
 
 if (window.location.pathname === '/login.html') {
@@ -22,11 +17,6 @@ async function handleSubmit(event) {
     event.preventDefault()
     const email = document.querySelector('#email').value
     const password = document.querySelector('#password').value
-
-    if (!email || !password) {
-        toggleError()
-        return
-    }
 
     const body = { email, password }
 
