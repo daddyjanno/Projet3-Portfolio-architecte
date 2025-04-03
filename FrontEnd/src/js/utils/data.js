@@ -53,7 +53,6 @@ export async function fetchCredentials(body) {
 export async function deleteProject(projectId) {
     try {
         const token = localStorage.getItem('token')
-        console.log(token)
 
         if (token) {
             const response = await fetch(BASEURL + `works/${projectId}`, {
