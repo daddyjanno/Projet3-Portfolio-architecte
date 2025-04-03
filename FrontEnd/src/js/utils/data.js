@@ -1,6 +1,9 @@
+import { toggleError } from './utils.js'
 import { BASEURL } from './variables.js'
 
 export async function fetchWorks() {
+    console.log('fetchWorks')
+
     try {
         const response = await fetch(BASEURL + 'works')
         if (!response.ok) {
@@ -15,6 +18,7 @@ export async function fetchWorks() {
 }
 
 export async function fetchCategories() {
+    console.log('fetchCategories')
     try {
         const response = await fetch(BASEURL + 'categories')
         if (!response.ok) {
@@ -38,6 +42,7 @@ export async function fetchCredentials(body) {
             body: JSON.stringify(body),
         })
         if (!response.ok) {
+            toggleError()
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         const data = await response.json()
