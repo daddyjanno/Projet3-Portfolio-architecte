@@ -33,8 +33,6 @@ export async function fetchCategories() {
 }
 
 export async function fetchCredentials(body) {
-    console.log(body)
-
     try {
         const response = await fetch(BASEURL + 'users/login', {
             method: 'POST',
