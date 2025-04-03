@@ -47,9 +47,20 @@
                 <h2>Log In</h2>
                 <form action="#" method="post" class="loginForm">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" autofocus />
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        autofocus
+                        autocomplete="username"
+                    />
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password" />
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        autocomplete="current-password"
+                    />
                     <span class="error hidden"
                         >“Erreur dans l’identifiant ou le mot de passe”</span
                     >
