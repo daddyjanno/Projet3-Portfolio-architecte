@@ -10,7 +10,7 @@ import {
 } from './utils/variables.js'
 
 const WORKS = await fetchWorks()
-const CATEGORIES = await fetchCategories()
+export const CATEGORIES = await fetchCategories()
 
 function init() {
     let isModalOpen = false
