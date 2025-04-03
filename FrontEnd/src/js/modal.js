@@ -1,4 +1,4 @@
-import { displayWork, displayWorkInModal } from './homepage.js'
+import { CATEGORIES, displayWork, displayWorkInModal } from './homepage.js'
 import { createProject, deleteProject } from './utils/data.js'
 import { toggleError } from './utils/utils.js'
 import {
