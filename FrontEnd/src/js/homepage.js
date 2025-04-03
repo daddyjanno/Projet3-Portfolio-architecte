@@ -48,7 +48,7 @@ init()
 
 export function createFigure(work) {
     const html = `
-        <figure data-id=${work.id} data-category=${work.categoryId}>
+        <figure data-id=${work.id} data-categoryId=${work.categoryId}>
             <img 
                 src=${work.imageUrl}
                 alt=${work.title}
@@ -64,7 +64,7 @@ export function createFigure(work) {
 export function createFigureInModal(work) {
     const figure = document.createElement('figure')
     figure.dataset.id = work.id
-    figure.dataset.category = work.categoryId
+    figure.dataset.categoryId = work.categoryId
     figure.innerHTML = `
            
                 <img 
@@ -111,7 +111,6 @@ function defineFilterValue(filters, filterValue) {
     for (const item of filters) {
         if (item.classList.contains('active')) {
             filterValue = item.dataset.categoryId
-            console.log('filterValue', filterValue)
         }
     }
     return filterValue
@@ -122,7 +121,6 @@ function filterWorks(filterValue, works) {
         return works
     }
     let filteredWorks
-    works.forEach((work) => console.log(work.categoryId, filterValue))
     filteredWorks = works.filter((el) => el.categoryId === Number(filterValue))
 
     return filteredWorks
