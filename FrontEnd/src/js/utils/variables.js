@@ -1,10 +1,4 @@
-import { fetchCategories, fetchWorks } from './data.js'
-
 export const BASEURL = 'http://localhost:5678/api/'
-
-export const CATEGORIES = await fetchCategories()
-
-export let WORKS = await fetchWorks()
 
 export const LOGO = document.getElementById('logo')
 export const LOGINBTN = document.getElementById('login')
