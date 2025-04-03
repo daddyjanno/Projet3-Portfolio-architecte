@@ -1,14 +1,16 @@
 import { deleteWork, handleModal, toggleIsModalOpen } from './modal.js'
+import { fetchCategories, fetchWorks } from './utils/data.js'
 import { toggleEditionMode, unbold } from './utils/utils.js'
 import {
-    CATEGORIES,
     EDITIONBTN,
     FILTERS,
     GALLERY,
     LOGINBTN,
     MODALGRID,
-    WORKS,
 } from './utils/variables.js'
+
+const WORKS = await fetchWorks()
+const CATEGORIES = await fetchCategories()
 
 function init() {
     let isModalOpen = false
@@ -46,7 +48,7 @@ init()
 
 export function createFigure(work) {
     const html = `
-        <figure data-id=${work.id}>
+        <figure data-id=${work.id} data-category=${work.categoryId}>
             <img 
                 src=${work.imageUrl}
                 alt=${work.title}
@@ -62,6 +64,7 @@ export function createFigure(work) {
 export function createFigureInModal(work) {
     const figure = document.createElement('figure')
     figure.dataset.id = work.id
+    figure.dataset.category = work.categoryId
     figure.innerHTML = `
            
                 <img 
@@ -83,6 +86,7 @@ export function createFigureInModal(work) {
 function createFilter(category) {
     const div = document.createElement('div')
     div.classList.add('filter')
+    div.dataset.categoryId = category.id
 
     const h3 = document.createElement('h3')
     h3.innerText = category.name
@@ -106,7 +110,8 @@ function displayFilters(categories) {
 function defineFilterValue(filters, filterValue) {
     for (const item of filters) {
         if (item.classList.contains('active')) {
-            filterValue = item.innerText
+            filterValue = item.dataset.categoryId
+            console.log('filterValue', filterValue)
         }
     }
     return filterValue
@@ -117,7 +122,8 @@ function filterWorks(filterValue, works) {
         return works
     }
     let filteredWorks
-    filteredWorks = works.filter((el) => el.category.name === filterValue)
+    works.forEach((work) => console.log(work.categoryId, filterValue))
+    filteredWorks = works.filter((el) => el.categoryId === Number(filterValue))
 
     return filteredWorks
 }
