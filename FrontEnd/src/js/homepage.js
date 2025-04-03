@@ -43,6 +43,8 @@ function init() {
             handleModal(isModalOpen, WORKS)
         })
     }
+
+    handleContactForm()
 }
 init()
 
@@ -170,4 +172,9 @@ export function initDisplay(works) {
         displayWork(element)
         displayWorkInModal(element)
     })
+}
+
+function handleContactForm() {
+    const btn = document.getElementById('contactFormSubmit')
+    btn.addEventListener('click', (event) => event.preventDefault())
 }
