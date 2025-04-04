@@ -17,9 +17,9 @@ function init() {
     const hasToken = localStorage.getItem('token') ? true : false
 
     initDisplay(WORKS)
-    manageFiltersClick(WORKS)
+    manageFiltersClick()
     displayFilters(CATEGORIES)
-    manageFiltersClick(WORKS)
+    manageFiltersClick()
 
     LOGINBTN.addEventListener('click', () => {
         if (LOGINBTN.innerText === 'login') {
@@ -50,7 +50,7 @@ init()
 
 export function createFigure(work) {
     const html = `
-        <figure data-id=${work.id} data-categoryId=${work.categoryId}>
+        <figure data-id=${work.id} data-category-id=${work.categoryId} class=figure>
             <img 
                 src=${work.imageUrl}
                 alt=${work.title}
@@ -67,6 +67,7 @@ export function createFigureInModal(work) {
     const figure = document.createElement('figure')
     figure.dataset.id = work.id
     figure.dataset.categoryId = work.categoryId
+    figure.classList.add('figure')
     figure.innerHTML = `
            
                 <img 
@@ -88,7 +89,7 @@ export function createFigureInModal(work) {
 function createFilter(category) {
     const div = document.createElement('div')
     div.classList.add('filter')
-    div.dataset.categoryId = category.id
+    div.dataset.categoryId = category.id || 'Tous'
 
     const h3 = document.createElement('h3')
     h3.innerText = category.name
@@ -118,42 +119,45 @@ function defineFilterValue(filters, filterValue) {
     return filterValue
 }
 
-function filterWorks(filterValue, works) {
-    if (filterValue === 'Tous') {
-        return works
-    }
-    let filteredWorks
-    filteredWorks = works.filter((el) => el.categoryId === Number(filterValue))
-
-    return filteredWorks
-}
-
 function manageActiveClass(filters, filter) {
     filters.forEach((filter) => filter.classList.remove('active'))
     filter.classList.add('active')
 }
 
-export function manageFiltersClick(works) {
+function filterWorks(filterValue) {
+    const figures = document.querySelectorAll('.figure')
+
+    if (filterValue === 'Tous') {
+        figures.forEach((figure) => {
+            figure.classList.remove('hidden')
+        })
+    } else {
+        figures.forEach((figure) => {
+            if (figure.dataset.categoryId !== filterValue) {
+                figure.classList.add('hidden')
+            } else {
+                figure.classList.remove('hidden')
+            }
+        })
+    }
+}
+
+export function manageFiltersClick() {
     const filters = document.querySelectorAll('.filter')
-    let filterValue = ''
-    let filteredWorks
+    let filterValue
 
     filters.forEach((filter) => {
         filter.addEventListener('click', () => {
             manageActiveClass(filters, filter)
             filterValue = defineFilterValue(filters, filterValue)
-            filteredWorks = filterWorks(filterValue, works)
-            clearGallery()
-            filteredWorks.forEach((el) => {
-                displayWork(el)
-            })
+            filterWorks(filterValue)
         })
     })
 }
 
-export function clearGallery() {
-    GALLERY.innerHTML = ''
-}
+// export function clearGallery() {
+//     GALLERY.innerHTML = ''
+// }
 
 export function displayWork(work) {
     const figure = createFigure(work)
