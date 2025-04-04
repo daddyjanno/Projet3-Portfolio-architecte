@@ -17,8 +17,8 @@ function init() {
     const hasToken = localStorage.getItem('token') ? true : false
 
     initDisplay(WORKS)
-    manageFiltersClick()
     displayFilters(CATEGORIES)
+    manageFiltersClick()
     manageFiltersClick()
 
     LOGINBTN.addEventListener('click', () => {
@@ -154,10 +154,6 @@ export function manageFiltersClick() {
         })
     })
 }
-
-// export function clearGallery() {
-//     GALLERY.innerHTML = ''
-// }
 
 export function displayWork(work) {
     const figure = createFigure(work)
