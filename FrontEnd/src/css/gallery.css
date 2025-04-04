@@ -18,6 +18,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(20px, 1fr));
     grid-column-gap: 20px;
     grid-row-gap: 20px;
 }
