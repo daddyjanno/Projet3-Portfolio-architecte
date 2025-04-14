@@ -1,6 +1,0 @@
--   [ ] Gérer les erreurs et les messages de confirmation (retour home si post project ok)
--   [ ] Refacto pour suppression des projets en fonction de leur dataset id
--   [ ] Ajout dynamique du projet dans la galerie après envoi du formulaire
--   [ ] Ajout dynamique du projet dans la modale après envoi du formulaire
--   [ ] Tester les suppressions multiples et ajouts multiples
--   [ ] Gérer le bouton de soumission de formulaire active/inactive
