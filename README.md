@@ -80,7 +80,7 @@ Le front-end sera lancé à l'URL:
 
 -   [Visual Studio Code](https://code.visualstudio.com/) - Éditeur de texte
 -   [GitHub](https://github.com/) - Outil de gestion de versions
--   [GitHub Pages](https://pages.github.com/) - Outil d’hébergement
+
 
 ## Auteur
 
