@@ -38,17 +38,19 @@ Travail en tant que développeur front-end sur la conception du site portfolio d
 
 ### Installation et lancement du Back-end :
 
-1. Installer toutes les dépendances pour le back-end:
+1. Aller dans le dossier "Backend"
+
+2. Installer toutes les dépendances pour le back-end:
 
 -   `npm install` ou `yarn`
 
-2. Lancer le back-end (port 3001 par défaut):
+3. Lancer le back-end (port 3001 par défaut):
 
 -   `npm start`
 
 ### Installation et lancement du front-end :
 
-1. Aller dans le dossier "Front"
+1. Aller dans le dossier "Frontend"
 
 2. Installer toutes les dépendances pour le front-end:
 
