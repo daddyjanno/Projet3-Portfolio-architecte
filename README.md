@@ -42,7 +42,7 @@ Travail en tant que développeur front-end sur la conception du site portfolio d
 
 2. Installer toutes les dépendances pour le back-end:
 
--   `npm install` ou `yarn`
+-   `npm install`
 
 3. Lancer le back-end (port 3001 par défaut):
 
